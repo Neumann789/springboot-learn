@@ -1,0 +1,10 @@
+.project
+.settings/
+target/
+.classpath
+logs/
+lib/
+.idea/
+*.iml
+*.cache
+*.lock
