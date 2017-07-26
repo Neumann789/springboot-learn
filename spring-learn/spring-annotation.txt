@@ -1,0 +1,14 @@
+1 了解spring中常用注解的使用方式
+@Bean 
+
+@Controller
+
+
+@autoware
+
+
+
+@Service
+
+
+@Compoment

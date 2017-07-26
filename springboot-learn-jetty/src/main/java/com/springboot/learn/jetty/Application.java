@@ -12,5 +12,6 @@ public class Application {
     	/*SecurityManager s=new SecurityManager();
     	System.setSecurityManager(s);*/
         SpringApplication.run(Application.class, args);  
+        
     }  
 }

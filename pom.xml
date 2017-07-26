@@ -16,6 +16,8 @@
 	<modules>
 		<module>springboot-learn-start</module>
 		<module>springboot-learn-jetty</module>
+		<module>spring-learn</module>
+		<module>btrace</module>
 	</modules>
 
 	<parent>
