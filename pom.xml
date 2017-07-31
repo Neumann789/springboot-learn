@@ -18,6 +18,9 @@
 		<module>springboot-learn-jetty</module>
 		<module>spring-learn</module>
 		<module>btrace</module>
+		<module>vjava</module>
+		<module>vmagent</module>
+		<module>asm</module>
 	</modules>
 
 	<parent>
