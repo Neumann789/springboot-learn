@@ -6,6 +6,7 @@ import com.alibaba.fastjson.JSON;
 import com.sun.tools.attach.AgentInitializationException;
 import com.sun.tools.attach.AgentLoadException;
 import com.sun.tools.attach.VirtualMachine;
+import com.sun.tools.attach.VirtualMachineDescriptor;
 /**
  * 
  * http://docs.oracle.com/javase/6/docs/jdk/api/attach/spec/com/sun/tools/attach/VirtualMachine.html
@@ -40,6 +41,13 @@ public class VirtualMachineTest {
 	public static void testLoadAgent(VirtualMachine vm) throws AgentLoadException, AgentInitializationException, Throwable{
 		String agentPath="E:\\tech\\jvm\\javaagent\\test\\vmagent.jar";
 		vm.loadAgent(agentPath);
+	}
+	
+	
+	public static void test2(){
+		
+//		VirtualMachine.attach(vmd);
+		
 	}
 	
 	

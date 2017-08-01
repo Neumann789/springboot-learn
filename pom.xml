@@ -21,6 +21,7 @@
 		<module>vjava</module>
 		<module>vmagent</module>
 		<module>asm</module>
+		<module>testJava</module>
 	</modules>
 
 	<parent>

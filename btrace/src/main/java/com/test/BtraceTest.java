@@ -1,5 +1,10 @@
 package com.test;
-
+/**
+ * 1 如果监听的程序异常，发现监听程序会挂
+ * 2
+ * @author fanghuabao
+ *
+ */
 public class BtraceTest {
 	
 	public static void main(String[] args) {
@@ -19,7 +24,7 @@ public class BtraceTest {
 		System.setProperty("com.sun.btrace.unsafe", "false");
 		
 		args=new String[2];
-		args[0]="25396";
+		args[0]="25148";
 		args[1]="F:\\git20170716\\springboot-learn\\btrace\\src\\main\\java\\com\\test\\samples\\MethodTimeCost.java";
 		com.sun.btrace.client.Main.main(args);
 		
