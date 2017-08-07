@@ -22,6 +22,8 @@
 		<module>vmagent</module>
 		<module>asm</module>
 		<module>testJava</module>
+		<module>rainbow</module>
+		<module>classReader</module>
 	</modules>
 
 	<parent>
