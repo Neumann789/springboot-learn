@@ -2,7 +2,9 @@ package com.rainbow.comm.model;
 
 public enum RspCode {
 	
-	VM_AGENT("vm01","添加代理类异常:%s");
+	VM_AGENT("vm01","添加代理类异常:%s"),
+	VM_SCRPT_GEN("vm02","监控脚本落地异常:%s"),
+	VM_SCRPT_READ("vm03","读取脚本文件异常:%s");
 	
 	
 	

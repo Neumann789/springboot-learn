@@ -28,6 +28,8 @@ public class MethodTimeCost {
      print("  [");
      print(strcat("Time taken : ",str(timecost)));
      println("]");
+     
+     //System.out.println("hello");
 
    }  
 } 

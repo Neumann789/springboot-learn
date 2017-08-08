@@ -1,15 +1,19 @@
 package com.rainbow.comm.util;
 
+import java.io.UnsupportedEncodingException;
 import java.lang.management.ManagementFactory;
 import java.lang.management.RuntimeMXBean;
+import java.net.InetAddress;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import com.alibaba.fastjson.JSON;
 import com.rainbow.comm.exception.VmException;
 import com.rainbow.comm.model.RspCode;
+import com.rainbow.entity.JvmInfo;
+import com.rainbow.entity.MachineInfo;
 import com.sun.tools.attach.VirtualMachine;
 import com.sun.tools.attach.VirtualMachineDescriptor;
 
@@ -76,6 +80,36 @@ public class VmUtil {
 		
 	}
 	
+	public static List<JvmInfo> getJvmInfoList(){
+		
+		List<VirtualMachineDescriptor> list = getVMDescList();
+		
+		List<JvmInfo> jvmInfoList=new ArrayList<>();
+		
+		for(VirtualMachineDescriptor vmd:list){
+			
+			JvmInfo jvmInfo = new JvmInfo();
+			
+			String dispName=vmd.displayName();
+			
+			if(dispName==null||dispName.length()==0){
+				dispName = "undisplay";
+			}
+			
+			jvmInfo.setPid(vmd.id());
+			try {
+				jvmInfo.setJvmName(new String(dispName.getBytes("gbk"), "UTF-8"));
+			} catch (UnsupportedEncodingException e) {
+				jvmInfo.setJvmName(dispName);
+			}
+			jvmInfoList.add(jvmInfo);
+			
+		}
+		
+		return jvmInfoList;
+		
+	}
+	
 	/**
 	 * 
 	 * getCurrentPid:获取当前java进程号. <br/>
@@ -109,6 +143,26 @@ public class VmUtil {
 		}
 	}
 	
+	
+	public static MachineInfo getMachineInfo(){
+		
+		MachineInfo machineInfo=new MachineInfo();
+		InetAddress ia=null;
+        try {
+            ia=ia.getLocalHost();
+            String machineName=ia.getHostName();
+            String ip=ia.getHostAddress();
+            machineInfo.setIp(ip);
+            machineInfo.setMachineName(machineName);
+            
+        } catch (Exception e) {
+        	LoggerUtil.error(e);
+        }
+        
+        return machineInfo;
+	}
+	
+	
 	public static void main(String[] args) {
 		
 		/*List<VirtualMachineDescriptor> list = getVMDescList();
@@ -119,7 +173,9 @@ public class VmUtil {
 		
 		//System.out.println(getVMPidInfoMap());
 		
-		loadAgent("23236", "E:\\tech\\jvm\\javaagent\\test\\vmagent.jar");
+		//loadAgent("23236", "E:\\tech\\jvm\\javaagent\\test\\vmagent.jar");
+		
+        
 		
 	}
 	
