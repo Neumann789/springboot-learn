@@ -1,0 +1,15 @@
+JarIndex-Version: 1.0
+
+jode-1.1.2-javosize.jar
+jode
+jode/bytecode
+jode/decompiler
+jode/expr
+jode/flow
+jode/jvm
+jode/obfuscator
+jode/obfuscator/modules
+jode/swingui
+jode/type
+jode/util
+

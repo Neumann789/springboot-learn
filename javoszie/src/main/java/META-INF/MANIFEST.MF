@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Ant-Version: Apache Ant 1.9.4
+Created-By: 1.8.0_51-b16 (Oracle Corporation)
+Premain-Class: com.javosize.agent.Agent
+Main-Class: com.javosize.cli.Main
+Agent-Class: com.javosize.agent.Agent
+Can-Redefine-Classes: true
+Can-Retransform-Classes: true
+

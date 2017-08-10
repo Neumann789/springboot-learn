@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.lucierna.antorcha.shaded</groupId>
+	<artifactId>kryo</artifactId>
+	<version>2.21-all-lucierna</version>
+
+	<name>Shaded AspectJ Antorcha Kryo</name>
+	<description>Shaded Antorcha Kryo</description>
+	<licenses>
+		<license>
+			<name>Eclipse Public License - v 1.0</name>
+			<url>http://www.eclipse.org/legal/epl-v10.html</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+
+	<repositories>
+		<repository>
+			<id>repo</id>
+			<url>file:./repo</url>
+		</repository>
+	</repositories>
+
+	<dependencies>
+
+		<dependency>
+			<groupId>kryo</groupId>
+			<artifactId>kryo-all</artifactId>
+			<version>2.21.0</version>
+		</dependency>
+	</dependencies>
+
+
+	<pluginRepositories>
+		<pluginRepository>
+			<id>apache.snapshots</id>
+			<url>http://repository.apache.org/snapshots/</url>
+		</pluginRepository>
+	</pluginRepositories>
+
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-shade-plugin</artifactId>
+				<version>1.6</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>shade</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<createSourcesJar>false</createSourcesJar>
+
+					<filters>
+						<filter>
+							<artifact>kryo:kryo-all</artifact>
+							<excludes>
+								<!-- this directory is no longer present in 1.6.12 -->
+								<exclude>testdata/**</exclude>
+							</excludes>
+						</filter>
+					</filters>
+					<relocations>
+						<relocation>
+							<pattern>org</pattern>
+							<shadedPattern>com.javosize.thirdparty.org</shadedPattern>
+						</relocation>
+						<relocation>
+							<rawString>true</rawString>
+							<pattern>Lorg//</pattern>
+							<shadedPattern>Lcom/javosize/thirdparty/org/</shadedPattern>
+						</relocation>
+					</relocations>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>
