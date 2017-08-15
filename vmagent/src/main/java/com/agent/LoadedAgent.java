@@ -27,6 +27,17 @@ public class LoadedAgent {
 					ProtectionDomain protectionDomain, byte[] classfileBuffer) throws IllegalClassFormatException {
 				
 				System.out.println("load Class:"+className);
+				
+				try {
+					//String classPath=className+".class";
+					//FileUtil.class2File(LoadedAgent.class.getClassLoader(), classPath,FileUtil.createFile("d:/classes/"+className+".class"));
+					if(className.endsWith("roxy0")){
+						FileUtil.class2File(classfileBuffer, FileUtil.createFile("d:/classes/"+className+".class"));
+					}
+				} catch (Throwable e) {
+					e.printStackTrace();
+				}
+				
 				return classfileBuffer;
 			}
 		});

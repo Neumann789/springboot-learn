@@ -1,5 +1,6 @@
 package com.util;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -112,9 +113,67 @@ public class FileUtil {
 	}
 	
 	
+	public static byte[] getClassBytes(Class clazz){
+		 String name = new StringBuilder().append(clazz.getName().replace('.', '/')).append(".class").toString();
+		    ClassLoader cl = clazz.getClassLoader();
+		    if (cl == null) {
+		      cl = ClassLoader.getSystemClassLoader();
+		    }
+		    InputStream iStream = cl.getResourceAsStream(name);
+		    try
+		    {
+		      ByteArrayOutputStream oStream = new ByteArrayOutputStream();
+		      byte[] buff = new byte[1024];
+		      int len = 0;
+		      while ((len = iStream.read(buff)) != -1) {
+		        oStream.write(buff, 0, len);
+		      }
+
+		      return oStream.toByteArray();
+		    }
+		    catch (Exception e)
+		    {
+		      return null;
+		    } finally {
+		    	try {
+					iStream.close();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+		    }
+
+	}
+	
+	public static void class2File(Class clazz,File file){
+		OutputStream os=null;
+		try {
+			byte[] bytecode=getClassBytes(clazz);
+			
+			os=new FileOutputStream(file);
+			
+			os.write(bytecode);
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}finally{
+			
+			if(os!=null){
+				try {
+					os.close();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			
+		}
+		
+	}
+	
 	
 	public static void main(String[] args) {
-		String fileName="META-INF/spring.handlers";
+		/*String fileName="META-INF/spring.handlers";
 		fileName="java/lang/String.class";
 		Enumeration<java.net.URL> urls=searchFileFromApplication(fileName);
 		
@@ -122,6 +181,8 @@ public class FileUtil {
 			URL url=urls.nextElement();
 			loadUrl2File(url, createFile("d:/classes/String.class"));
 	    	//System.out.println(url.toString());
-	    }
+	    }*/
+		
+		class2File(String.class, createFile("d:/classes/String.class"));
 	}
 }

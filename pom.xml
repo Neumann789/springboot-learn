@@ -27,6 +27,9 @@
 		<module>javosize</module>
 		<module>jode</module>
 		<module>jode-1.1.2</module>
+		<module>dubbo-learn</module>
+		<module>sa-jni</module>
+		<module>sa-jdi</module>
 	</modules>
 
 	<parent>

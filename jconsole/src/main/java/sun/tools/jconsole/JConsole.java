@@ -7,30 +7,60 @@
 
 package sun.tools.jconsole;
 
-import java.awt.*;
-import java.awt.event.*;
-import java.beans.*;
-import java.io.*;
-import java.lang.reflect.InvocationTargetException;
-import java.net.*;
-import java.util.*;
-import java.util.List;
+import static sun.tools.jconsole.Resources.getMnemonicInt;
+import static sun.tools.jconsole.Resources.getText;
+import static sun.tools.jconsole.Utilities.setAccessibleDescription;
 
-import javax.swing.*;
-import javax.swing.border.*;
-import javax.swing.event.*;
-import javax.swing.plaf.*;
-import javax.management.remote.JMXServiceURL;
-import javax.management.remote.JMXConnector;
-import javax.security.auth.login.FailedLoginException;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Container;
+import java.awt.Dimension;
+import java.awt.GraphicsConfiguration;
+import java.awt.Image;
+import java.awt.Insets;
+import java.awt.Rectangle;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.InputEvent;
+import java.awt.event.KeyEvent;
+import java.beans.PropertyVetoException;
+import java.io.File;
+import java.io.IOException;
+import java.net.ConnectException;
+import java.net.MalformedURLException;
+import java.net.NoRouteToHostException;
+import java.net.URL;
+import java.net.URLClassLoader;
+import java.net.UnknownHostException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.ServiceConfigurationError;
+import java.util.ServiceLoader;
+
+import javax.imageio.ImageIO;
 import javax.net.ssl.SSLHandshakeException;
+import javax.security.auth.login.FailedLoginException;
+import javax.swing.JButton;
+import javax.swing.JDesktopPane;
+import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JRootPane;
+import javax.swing.KeyStroke;
+import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
+import javax.swing.border.Border;
+import javax.swing.event.InternalFrameEvent;
+import javax.swing.event.InternalFrameListener;
+import javax.swing.plaf.BorderUIResource;
 
 import com.sun.tools.jconsole.JConsolePlugin;
 
 import sun.net.util.IPAddressUtil;
-
-import static sun.tools.jconsole.Resources.*;
-import static sun.tools.jconsole.Utilities.*;
 
 @SuppressWarnings("serial")
 public class JConsole extends JFrame
@@ -768,7 +798,12 @@ public class JConsole extends JFrame
 	SwingUtilities.invokeLater(new Runnable() {
 		public void run() {
 		    JConsole jConsole = new JConsole(hotspot);
-
+		    
+	        try {
+	        	Image image=ImageIO.read(JConsole.class.getResource("/images/plog.png"));
+	        	jConsole.setIconImage(image);
+			} catch (IOException e) {
+			}
 		    // Center the window on screen, taking into account screen
 		    // size and insets.
 		    Toolkit toolkit = Toolkit.getDefaultToolkit();
