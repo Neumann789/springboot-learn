@@ -30,6 +30,7 @@
 		<module>dubbo-learn</module>
 		<module>sa-jni</module>
 		<module>sa-jdi</module>
+		<module>spring-cloud</module>
 	</modules>
 
 	<parent>

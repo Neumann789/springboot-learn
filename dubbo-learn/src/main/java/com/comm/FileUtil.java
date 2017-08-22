@@ -1,4 +1,4 @@
-package com.dubbo.comm;
+package com.comm;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;

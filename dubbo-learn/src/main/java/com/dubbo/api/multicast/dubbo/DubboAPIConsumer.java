@@ -1,4 +1,4 @@
-package com.dubbo.test.multicast.http;
+package com.dubbo.api.multicast.dubbo;
 
 import com.alibaba.dubbo.config.ApplicationConfig;
 import com.alibaba.dubbo.config.ReferenceConfig;

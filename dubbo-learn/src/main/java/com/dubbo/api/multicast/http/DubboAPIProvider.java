@@ -1,4 +1,4 @@
-package com.dubbo.test.multicast.dubbo;
+package com.dubbo.api.multicast.http;
 import java.io.IOException;
 import java.io.Serializable;
 
@@ -6,7 +6,6 @@ import com.alibaba.dubbo.config.ApplicationConfig;
 import com.alibaba.dubbo.config.ProtocolConfig;
 import com.alibaba.dubbo.config.RegistryConfig;
 import com.alibaba.dubbo.config.ServiceConfig;
-import com.dubbo.comm.FileUtil;
 
 /**
  * 
@@ -21,13 +20,6 @@ import com.dubbo.comm.FileUtil;
 public class DubboAPIProvider {
 	public static void main(String[] args) throws IOException {
 		
-		providerExport(true);
-		
-		
-		
-	}
-
-	public static void providerExport(boolean isWait) throws IOException {
 		//服务实现
 		TestService testService = new TestServiceImpl();
 		
@@ -45,8 +37,8 @@ public class DubboAPIProvider {
 		
 		//服务提供者协议配置
 		ProtocolConfig protocolConfig = new ProtocolConfig();
-		protocolConfig.setName("dubbo");
-		//protocolConfig.setName("http");
+//		protocolConfig.setName("dubbo");
+		protocolConfig.setName("http");
 		protocolConfig.setPort(28956);
 		protocolConfig.setThreads(200);
 		
@@ -61,11 +53,10 @@ public class DubboAPIProvider {
 		serviceConfig.setVersion("1.0.0");
 		
 		serviceConfig.export();
-
 		
-		if(isWait){
-			System.in.read();
-		}
+		System.in.read();
+		
+		
 		
 	}
 }

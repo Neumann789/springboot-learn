@@ -1,12 +1,10 @@
-package com.dubbo.test.multicast.dubbo;
-
-import com.dubbo.comm.FileUtil;
+package com.dubbo.api.zookeeper.dubbo;
 
 public class DubboAPIProviderConsumer {
 	
 	public static void main(String[] args) throws Throwable {
 		
-		DubboAPIProvider.providerExport(false);
+		DubboAPIProvider.startProvider(false);
 		
 		DubboAPIConsumer.main(args);
 		
