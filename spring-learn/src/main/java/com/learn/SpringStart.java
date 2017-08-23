@@ -3,7 +3,7 @@ package com.learn;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.learn.annotation.bean.Test;
+import com.learn.bean.MyBean;
 
 public class SpringStart {
 	
@@ -14,8 +14,8 @@ public class SpringStart {
 		/*Bean bean=ac.findAnnotationOnBean("getTest", Bean.class);
 		System.out.println(bean);*/
 		
-		Test test=(Test)ac.getBean("getTest");
-		test.sayHello("jack");
+		MyBean myBean=(MyBean)ac.getBean("myBean");
+		myBean.handle();
 		System.in.read();
 	}
 

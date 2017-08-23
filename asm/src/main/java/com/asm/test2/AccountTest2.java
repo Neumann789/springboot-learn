@@ -12,6 +12,9 @@ public class AccountTest2 {
 	
 	public static void main(String[] args) throws Throwable {
 		Account acc=SecureAccountGenerator.generateSecureAccount();
+		
+		Class clazz=SecureAccountGenerator.classLoader.loadClass("com.asm.test2.Account$EnhancedByASM");
+		System.out.println("clazz==>> "+clazz);
 		System.out.println(acc);
 		acc.operation();
 	}

@@ -10,7 +10,6 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.encoding>UTF-8</maven.compiler.encoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-
 	</properties>
 
 	<modules>
@@ -31,6 +30,8 @@
 		<module>sa-jni</module>
 		<module>sa-jdi</module>
 		<module>spring-cloud</module>
+		<module>testJvm</module>
+		<module>comm-tools</module>
 	</modules>
 
 	<parent>

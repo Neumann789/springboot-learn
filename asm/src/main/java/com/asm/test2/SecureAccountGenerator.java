@@ -8,7 +8,7 @@ import org.objectweb.asm.ClassWriter;
 
 public class SecureAccountGenerator { 
 	 
-    private static AccountGeneratorClassLoader classLoader = 
+    public static AccountGeneratorClassLoader classLoader = 
         new AccountGeneratorClassLoader(); 
      
     private static Class secureAccountClass; 
@@ -27,7 +27,7 @@ public class SecureAccountGenerator {
         return (Account) secureAccountClass.newInstance(); 
     } 
      
-    private static class AccountGeneratorClassLoader extends ClassLoader {
+     static class AccountGeneratorClassLoader extends ClassLoader {
         public Class defineClassFromClassFile(String className, 
             byte[] classFile) throws ClassFormatError { 
             return defineClass(className, classFile, 0, 
