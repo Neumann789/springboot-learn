@@ -32,6 +32,7 @@
 		<module>spring-cloud</module>
 		<module>testJvm</module>
 		<module>comm-tools</module>
+		<module>springmvc</module>
 	</modules>
 
 	<parent>
