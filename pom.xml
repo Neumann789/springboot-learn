@@ -33,6 +33,8 @@
 		<module>testJvm</module>
 		<module>comm-tools</module>
 		<module>springmvc</module>
+		<module>springcloud</module>
+		<module>springcloud-client</module>
 	</modules>
 
 	<parent>

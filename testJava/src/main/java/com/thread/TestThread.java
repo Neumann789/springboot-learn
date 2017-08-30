@@ -24,12 +24,12 @@ public class TestThread {
 			};
 		};
 		
-		t.setDaemon(true);
+		//t.setDaemon(true);//默认是非守护线程
 		
 		t.start();
 		
 		try {
-			Thread.sleep(20000);
+			Thread.sleep(5000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
