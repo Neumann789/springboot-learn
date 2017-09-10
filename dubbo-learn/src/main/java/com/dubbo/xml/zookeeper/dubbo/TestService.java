@@ -2,6 +2,8 @@ package com.dubbo.xml.zookeeper.dubbo;
 
 import java.io.Serializable;
 
+import com.alibaba.fastjson.JSON;
+
 interface TestService {
 	
 	public void test();
@@ -10,7 +12,42 @@ interface TestService {
 	
 	public Response sayHello2(Request req) throws TestException;
 	
+	public Response sendMsg(Request req,Message msg) throws TestException;
+	
+	
+	
+	
 
+}
+
+class Message implements Serializable{
+	
+	private static final long serialVersionUID = 8643051095643805373L;
+
+	private String msgId;
+	
+	private int msgLen;
+
+	public String getMsgId() {
+		return msgId;
+	}
+
+	public void setMsgId(String msgId) {
+		this.msgId = msgId;
+	}
+
+	public int getMsgLen() {
+		return msgLen;
+	}
+
+	public void setMsgLen(int msgLen) {
+		this.msgLen = msgLen;
+	}
+	
+	
+	
+	
+	
 }
 
 class Request implements Serializable{
@@ -131,6 +168,15 @@ class TestServiceImpl implements TestService{
 		}
 		return rsp;
 	}
+
+	@Override
+	public Response sendMsg(Request req, Message msg) throws TestException {
+		System.out.println("Request:"+JSON.toJSONString(req)+" Message:"+JSON.toJSONString(msg));
+		Response rsp = new Response();
+		rsp.setCode("0000");
+		rsp.setMsg("成功");
+		return rsp;
+	}    
 	
 }
 

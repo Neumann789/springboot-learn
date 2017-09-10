@@ -68,6 +68,7 @@ public class DubboAPIProvider {
 		serviceConfig.setInterface(inter);
 		serviceConfig.setRef(t);
 		serviceConfig.setVersion("1.0.0");
+		serviceConfig.setScope("");
 		
 		serviceConfig.export();
 

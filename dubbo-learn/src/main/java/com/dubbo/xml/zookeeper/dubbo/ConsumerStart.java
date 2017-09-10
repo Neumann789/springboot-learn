@@ -9,10 +9,15 @@ public class ConsumerStart {
 		
 		ApplicationContext ac=new ClassPathXmlApplicationContext("classpath:/com/dubbo/xml/zookeeper/dubbo/dubbo-consumer.xml");
 		TestService testService=(TestService)ac.getBean("testService");
-		for(int i=0;i<1000;i++){
+		
+		Request req=new Request();
+		req.setAge(10);
+		req.setName("fhb");
+		testService.sayHello(req);
+		/*for(int i=0;i<1;i++){
 			testService.test();
 			Thread.sleep(1000);
-		}
+		}*/
 		System.out.println("执行结束");
 		
 		

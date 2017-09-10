@@ -14,7 +14,7 @@
 		file="dubbo-consumer.cache" />
 
 	<!-- 消费方应用信息timeout默认是1000ms retries默认是2，会调3次 -->
-	<dubbo:consumer retries="5" check="false" timeout="20000"/>
+	<dubbo:consumer retries="5" check="false" timeout="6000000"/>
 
 	<!-- <dubbo:reference id="testService"
 		interface="com.dubbo.xml.zookeeper.dubbo.TestService" timeout="200000"
@@ -22,4 +22,10 @@
 
 	<dubbo:reference id="testService"
 		interface="com.dubbo.xml.zookeeper.dubbo.TestService" retries="5" check="false"/>
+		
+		
+<!-- 	<dubbo:reference id="testService"
+	    interface="com.dubbo.xml.zookeeper.dubbo.TestService"
+		url="dubbo://127.0.0.1:9090/com.dubbo.xml.zookeeper.dubbo.TestService"
+		/> -->
 </beans>
