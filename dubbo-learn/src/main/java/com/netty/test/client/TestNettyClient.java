@@ -9,6 +9,7 @@ import java.util.concurrent.Executors;
 
 import org.jboss.netty.bootstrap.ClientBootstrap;
 import org.jboss.netty.buffer.ChannelBuffer;
+import org.jboss.netty.buffer.ChannelBuffers;
 import org.jboss.netty.channel.Channel;
 import org.jboss.netty.channel.ChannelFactory;
 import org.jboss.netty.channel.ChannelFuture;
@@ -71,8 +72,11 @@ public class TestNettyClient {
 		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
         while(true){
             try {
-            	String msg=in.readLine() + "\r\n";
-				channel.write(msg);
+            	String msg=in.readLine();
+            	ChannelBuffer clb=ChannelBuffers.dynamicBuffer();
+            	clb.writeBytes(msg.getBytes());
+				channel.write(clb);
+				
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -87,9 +91,7 @@ class TimeClientHandler extends SimpleChannelHandler {
     @Override
     public void messageReceived(ChannelHandlerContext ctx, MessageEvent e) {
         ChannelBuffer buf = (ChannelBuffer) e.getMessage();
-        long currentTimeMillis = buf.readInt() * 1000L;
-        System.out.println(new Date(currentTimeMillis));
-        e.getChannel().close();
+        System.out.println(new String(buf.array()));
     }
 
     @Override

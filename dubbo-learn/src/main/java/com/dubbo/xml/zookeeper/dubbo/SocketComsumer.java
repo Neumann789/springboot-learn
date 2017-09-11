@@ -4,10 +4,6 @@ import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.HashMap;
 import java.util.Map;
@@ -20,9 +16,6 @@ import com.alibaba.dubbo.rpc.RpcInvocation;
 import com.alibaba.fastjson.JSON;
 
 public class SocketComsumer {
-	
-	
-	
 	public static void main(String[] args) throws Throwable {
 		
 		Socket s = new Socket("127.0.0.1", 20881);
@@ -30,8 +23,8 @@ public class SocketComsumer {
 		BufferedInputStream  bis=new BufferedInputStream(s.getInputStream());
 		BufferedOutputStream bos=new BufferedOutputStream(s.getOutputStream());
 		
-		//bos.write(genRequest());
-		bos.write(genRequest4SendMsg());
+		bos.write(genRequest());
+		//bos.write(genRequest4SendMsg());
 		bos.flush();
 		
 		byte[] rspBuf=new byte[1024];
@@ -44,6 +37,9 @@ public class SocketComsumer {
 		
 	}
 	
+	/**
+	 * 对响应进行解析
+	 */
 	public static Object getRspObj(byte[] buf) throws Throwable{
 		byte[] bodyData=new byte[buf.length-16];
 		System.arraycopy(buf, 16, bodyData, 0, bodyData.length);
@@ -57,7 +53,9 @@ public class SocketComsumer {
 	}
 	
 	
-	
+/**
+ * 组装sendMsg请求	
+ */
 public static byte[] genRequest4SendMsg() throws Throwable{
 		
 		Request request = new Request();
@@ -121,8 +119,6 @@ public static byte[] genRequest4SendMsg() throws Throwable{
 		header[13]=0;
 		header[14]=1;
 		header[15]=-119;
-		
-		
 		byte[] requestData=new byte[header.length+bodyLen];
 		System.arraycopy(header, 0, requestData, 0, header.length);
 		System.arraycopy(bodyData, 0, requestData, header.length, bodyLen);
@@ -132,7 +128,9 @@ public static byte[] genRequest4SendMsg() throws Throwable{
 		
 		return requestData;
 	}
-	
+	/**
+	 * 组装sayHello请求	
+	 */
 	public static byte[] genRequest() throws Throwable{
 		
 		Request request = new Request();
@@ -155,25 +153,16 @@ public static byte[] genRequest4SendMsg() throws Throwable{
 		rq.setAge(10);
 		rq.setName("fhb");
 		out.writeObject(rq);
-		//{
-		//path=com.dubbo.xml.zookeeper.dubbo.TestService, 
-		//interface=com.dubbo.xml.zookeeper.dubbo.TestService, 
-		//timeout=6000000,
-		//version=0.0.0
-		//}
 		Map<String, String> attachemets=new HashMap<>();
 		attachemets.put("path", "com.dubbo.xml.zookeeper.dubbo.TestService");
 		attachemets.put("interface", "com.dubbo.xml.zookeeper.dubbo.TestService");
 		attachemets.put("timeout", "6000000");
 		attachemets.put("version", "0.0.0");
 		out.writeObject(attachemets);
-		
 		out.flushBuffer();
-		
 		os.flush();
 		byte[] bodyData=os.toByteArray();
 		int bodyLen=bodyData.length;
-		
 		byte[] header=new byte[16];
 		header[0]=-38;
 		header[1]=-69;
@@ -191,48 +180,10 @@ public static byte[] genRequest4SendMsg() throws Throwable{
 		header[13]=0;
 		header[14]=1;
 		header[15]=38;
-		
-		
 		byte[] requestData=new byte[header.length+bodyLen];
 		System.arraycopy(header, 0, requestData, 0, header.length);
 		System.arraycopy(bodyData, 0, requestData, header.length, bodyLen);
-		
-		
-		
-		
 		return requestData;
 	}
 	
-	
-	public static String telnetDubbo(String ip, int port, String request) {
-
-		Socket socket;
-		String result="";
-		try {
-			socket = new Socket(ip, port);
-			PrintWriter pw = new PrintWriter(socket.getOutputStream());
-
-			String msg = "\r\n";
-			pw.write(msg);
-			pw.flush();
-
-			InputStream ins = socket.getInputStream();
-			
-			byte[] tt = new byte[1024];
-			int len=0;
-			
-			len=ins.read(tt, 0, tt.length);
-
-			pw.write("invoke " + request + "\r\n");
-			pw.flush();
-			len=ins.read(tt, 0, tt.length);
-			result = new String(tt,0,len,"gbk");
-			result = result.split("\r\n")[0];
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		return result;
-	}
-
 }

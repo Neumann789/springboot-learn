@@ -60,10 +60,20 @@ class DiscardServerHandler extends SimpleChannelHandler {
 
     public void messageReceived(ChannelHandlerContext ctx, MessageEvent e) {
         ChannelBuffer buf = (ChannelBuffer) e.getMessage();
-        while(buf.readable()) {
+        
+        if(buf.readable()){
+        	System.out.println(new String(buf.array()));
+        }
+        
+        ChannelBuffer writeBuf=ChannelBuffers.dynamicBuffer();
+        writeBuf.writeBytes("我是服务器,已经收到请求!".getBytes());
+        e.getChannel().write(writeBuf);
+        
+        
+       /* while(buf.readable()) {
             System.out.println((char) buf.readByte());
             System.out.flush();
-        }
+        }*/
     }
     
     public void messageReceived2(ChannelHandlerContext ctx, MessageEvent e) {
