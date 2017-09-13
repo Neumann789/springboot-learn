@@ -23,7 +23,7 @@ public class DubboAPIConsumer {
 		// 连接注册中心配置
 		RegistryConfig registry = new RegistryConfig();
 		registry.setProtocol("zookeeper");
-		registry.setAddress("192.168.0.65:2181");
+		registry.setAddress("127.0.0.1:2181");
 		registry.setUsername("aa");
 		registry.setPassword("bb");
 

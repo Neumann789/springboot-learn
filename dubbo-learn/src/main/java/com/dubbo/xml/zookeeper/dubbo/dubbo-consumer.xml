@@ -10,7 +10,7 @@
 	<dubbo:application name="dubbo-consumer" />
 
 	<!-- 使用zookeeper注册中心暴露服务地址 如果是多个地址则只需：192.168.224.199:2181,192.168.224.20:2181,192.168.224.200:2181 -->
-	<dubbo:registry protocol="zookeeper" address="192.168.0.65:2181"
+	<dubbo:registry protocol="zookeeper" address="127.0.0.1:2181"
 		file="dubbo-consumer.cache" />
 
 	<!-- 消费方应用信息timeout默认是1000ms retries默认是2，会调3次 -->

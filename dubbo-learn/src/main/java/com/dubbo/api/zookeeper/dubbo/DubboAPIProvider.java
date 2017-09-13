@@ -32,7 +32,7 @@ public class DubboAPIProvider {
 		
 		TradeService tradeService=new TradeServiceImpl();
 		
-		providerExport(TradeService.class, tradeService,28081);
+		//providerExport(TradeService.class, tradeService,28081);
 		
 		if(isWait){
 			System.in.read();
@@ -48,7 +48,7 @@ public class DubboAPIProvider {
 		//连接注册中心配置
 		RegistryConfig registryConfig = new RegistryConfig();
 		registryConfig.setProtocol("zookeeper");
-		registryConfig.setAddress("192.168.0.65:2181");
+		registryConfig.setAddress("127.0.0.1:2181");
 		registryConfig.setUsername("aa");//???
 		registryConfig.setPassword("bb");//???
 		
