@@ -10,10 +10,14 @@ interface TestService {
 	
 	public Response sayHello(Request req);
 	
+	public Response sayHello(Request req,int status);
+	
 	public Response sayHello2(Request req) throws TestException;
 	
 	public Response sendMsg(Request req,Message msg) throws TestException;
 	
+	
+	public Response sendMsg(Request req,Message msg,int status) throws TestException;
 	
 	
 	
@@ -175,6 +179,24 @@ class TestServiceImpl implements TestService{
 		Response rsp = new Response();
 		rsp.setCode("0000");
 		rsp.setMsg("成功");
+		return rsp;
+	}
+
+	@Override
+	public Response sendMsg(Request req, Message msg, int status) throws TestException {
+		System.out.println("Request:"+JSON.toJSONString(req)+" Message:"+JSON.toJSONString(msg));
+		Response rsp = new Response();
+		rsp.setCode("0000");
+		rsp.setMsg("成功");
+		return rsp;
+	}
+
+	@Override
+	public Response sayHello(Request req, int status) {
+		System.out.println("Request:"+req.getAge()+":"+req.getName()+" status:"+status);
+		Response rsp = new Response();
+		rsp.setCode("0000");
+		rsp.setMsg("success");
 		return rsp;
 	}    
 	
