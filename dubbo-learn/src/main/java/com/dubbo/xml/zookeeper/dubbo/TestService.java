@@ -197,6 +197,9 @@ class TestServiceImpl implements TestService{
 		Response rsp = new Response();
 		rsp.setCode("0000");
 		rsp.setMsg("success");
+		if(status==1){
+			throw new RuntimeException();
+		}
 		return rsp;
 	}    
 	

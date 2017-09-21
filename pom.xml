@@ -37,6 +37,8 @@
 		<module>springcloud-client</module>
 		<module>design-patterns</module>
 		<module>testNetty</module>
+		<module>testMaven</module>
+		<module>testGit</module>
 	</modules>
 
 	<parent>

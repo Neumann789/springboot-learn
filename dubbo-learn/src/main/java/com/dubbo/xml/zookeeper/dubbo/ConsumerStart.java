@@ -13,7 +13,7 @@ public class ConsumerStart {
 		Request req=new Request();
 		req.setAge(10);
 		req.setName("fhb");
-		testService.sayHello(req,2);
+		testService.sayHello(req,1);
 		/*for(int i=0;i<1;i++){
 			testService.test();
 			Thread.sleep(1000);
