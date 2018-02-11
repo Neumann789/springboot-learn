@@ -39,6 +39,7 @@
 		<module>testNetty</module>
 		<module>testMaven</module>
 		<module>testGit</module>
+		<module>testJavac</module>
 	</modules>
 
 	<parent>
