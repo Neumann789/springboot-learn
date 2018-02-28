@@ -1,4 +1,4 @@
-package com.agent.comm;
+package com.agent.util;
 
 import com.alibaba.fastjson.JSON;
 

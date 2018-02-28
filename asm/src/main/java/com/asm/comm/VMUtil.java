@@ -18,20 +18,26 @@ public class VMUtil {
 
 	public static void main(String[] args) throws Throwable {
 		
-		List<VirtualMachineDescriptor> list = VirtualMachine.list();
+/*		List<VirtualMachineDescriptor> list = VirtualMachine.list();
 		
 		for(VirtualMachineDescriptor vmd : list){
 			
 			System.out.println(vmd.displayName()+"========"+vmd.id());
 			if(vmd.displayName().endsWith("VMUtil")){
-				injectAgent(vmd.id(), "C:\\Users\\Administrator\\Desktop\\vmagent.jar");
+				//
+				//injectAgent(vmd.id(), "C:\\Users\\Administrator\\Desktop\\vmagent.jar");
+				injectAgent(vmd.id(), "E:\\tech\\jvm\\javaagent\\test\\vmagent.jar");
 			}
 			
-		}
+		}*/
+		
+		injectAgent("20952", "E:\\tech\\jvm\\javaagent\\test\\vmagent.jar");
 		
 		System.in.read();
 		
 	}
+	
+	
 	
 	public static void injectAgent(String vmId,String agentJarPath) throws Throwable{
 		VirtualMachine virtualMachine = VirtualMachine.attach(vmId);

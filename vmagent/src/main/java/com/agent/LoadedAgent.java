@@ -17,8 +17,6 @@ public class LoadedAgent {
     
     private static void execute(String args, Instrumentation inst) {
     	
-		System.out.println("agent is running");
-		
 		ServerManager.start();
     	
 	}

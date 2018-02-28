@@ -1,8 +1,15 @@
 package com.agent.comm;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
+
+import com.agent.instructs.InstructManager;
+import com.agent.util.LogUtil;
+import com.agent.util.ThreadPoolUtil;
 
 public class ServerManager {
 	
@@ -10,7 +17,7 @@ public class ServerManager {
 	public static void start(){
 		ServerSocket ss = null;
 		try {
-			LogUtil.info("开启监听服务端口:"+Constant.SERVER_PORT);
+			LogUtil.info("socket server stat at port="+Constant.SERVER_PORT);
 			ss = new ServerSocket(Constant.SERVER_PORT);
 			dispatch(ss);
 		} catch (Exception e) {
@@ -29,7 +36,7 @@ public class ServerManager {
 		
 		while(true){
 			Socket socket = ss.accept();
-			LogUtil.info("收到一个请求:"+socket.getInetAddress());
+			LogUtil.info("receive request from "+socket.getInetAddress());
 			socketHandle(socket);
 		}
 		
@@ -45,12 +52,46 @@ public class ServerManager {
 			
 			@Override
 			public void run() {
-				//TODO
-				System.out.println("处理客户端请求逻辑TODO");
+				BufferedReader br = null;
+				PrintWriter pw = null;
+				try {
+					
+					br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+					pw = new PrintWriter(socket.getOutputStream(),true);
+					
+					String buf = null;
+					
+					while((buf=br.readLine())!=null){
+						LogUtil.info("receive instruct msg:"+buf);
+						String returnMsg = InstructManager.handleInstructMsg(buf);
+						pw.println(returnMsg);
+					}
+					
+					
+				} catch (Exception e) {
+					e.printStackTrace();
+				}finally {
+					if(br != null){
+						try {
+							br.close();
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					}
+					
+					if(pw != null){
+						pw.close();
+					}
+				}
 				
 			}
 		});
 	}
 	
+	
+	public static void main(String[] args) {
+		start();
+	}
 
 }
