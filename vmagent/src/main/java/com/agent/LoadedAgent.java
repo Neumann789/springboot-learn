@@ -6,6 +6,7 @@ import java.lang.instrument.Instrumentation;
 import java.security.ProtectionDomain;
 
 import com.agent.comm.ServerManager;
+import com.agent.util.LogUtil;
 
 public class LoadedAgent {
     public static void agentmain(String args, Instrumentation inst){
@@ -16,8 +17,9 @@ public class LoadedAgent {
     }
     
     private static void execute(String args, Instrumentation inst) {
-    	
+    	LogUtil.info("vmagent inject start");
 		ServerManager.start();
+		LogUtil.info("vmagent inject success");
     	
 	}
 	public static void execute2(String args, Instrumentation inst){
