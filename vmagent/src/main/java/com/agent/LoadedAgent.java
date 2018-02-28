@@ -5,6 +5,8 @@ import java.lang.instrument.IllegalClassFormatException;
 import java.lang.instrument.Instrumentation;
 import java.security.ProtectionDomain;
 
+import com.agent.comm.ServerManager;
+
 public class LoadedAgent {
     public static void agentmain(String args, Instrumentation inst){
     	execute(args, inst);
@@ -13,7 +15,14 @@ public class LoadedAgent {
     	execute(args, inst);
     }
     
-    public static void execute(String args, Instrumentation inst){
+    private static void execute(String args, Instrumentation inst) {
+    	
+		System.out.println("agent is running");
+		
+		ServerManager.start();
+    	
+	}
+	public static void execute2(String args, Instrumentation inst){
     	
        /* Class[] classes = inst.getAllLoadedClasses();
         for(Class cls :classes){
@@ -26,9 +35,9 @@ public class LoadedAgent {
 			public byte[] transform(ClassLoader loader, String className, Class<?> classBeingRedefined,
 					ProtectionDomain protectionDomain, byte[] classfileBuffer) throws IllegalClassFormatException {
 				
-				System.out.println("load Class:"+className);
+				//System.out.println("load Class:"+className);
 				
-				try {
+				/*try {
 					//String classPath=className+".class";
 					//FileUtil.class2File(LoadedAgent.class.getClassLoader(), classPath,FileUtil.createFile("d:/classes/"+className+".class"));
 					if(className.endsWith("roxy0")){
@@ -36,11 +45,32 @@ public class LoadedAgent {
 					}
 				} catch (Throwable e) {
 					e.printStackTrace();
-				}
+				}*/
+				
+				new Thread(){
+					public void run() {
+						
+						while(true){
+							
+							try {
+								operate();
+								Thread.sleep(1000);
+							} catch (InterruptedException e) {
+								e.printStackTrace();
+							}
+							
+						}
+						
+					};
+				}.start();
 				
 				return classfileBuffer;
 			}
 		});
         
     }
+    
+    public static void operate(){
+		System.out.println("operate ......");
+	}
 }

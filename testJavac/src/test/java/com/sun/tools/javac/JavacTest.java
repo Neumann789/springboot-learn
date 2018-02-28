@@ -14,7 +14,7 @@ public class JavacTest {
 	public static void main(String[] args) throws Exception {
 		
 		args = new String[5];
-		args[0] = "F:/git20170716/springboot-learn/testJavac/src/test/java/com/sun/tools/javac/Hello.java";
+		args[0] = "E:/git/20180213/springboot-learn/testJavac/src/test/java/com/sun/tools/javac/Hello.java";
 		args[1] = "-verbose";
 		args[2] = "-verbose";
 		args[3] = "-verbose";
