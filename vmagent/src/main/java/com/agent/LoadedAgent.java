@@ -18,7 +18,7 @@ public class LoadedAgent {
     
     private static void execute(String args, Instrumentation inst) {
     	LogUtil.info("vmagent inject start");
-		ServerManager.start();
+		ServerManager.startVmagentThread();
 		LogUtil.info("vmagent inject success");
     	
 	}

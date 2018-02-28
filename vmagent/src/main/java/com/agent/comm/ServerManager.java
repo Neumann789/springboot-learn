@@ -14,6 +14,21 @@ import com.agent.util.ThreadPoolUtil;
 public class ServerManager {
 	
 	
+	public static void startVmagentThread(){
+		
+		Thread t = new Thread(){
+			@Override
+			public void run() {
+				ServerManager.start();
+			}
+		};
+		t.setDaemon(true);
+		t.setName("vmagent-thread");
+		t.start();
+		
+	}
+	
+	
 	public static void start(){
 		ServerSocket ss = null;
 		try {
@@ -90,8 +105,11 @@ public class ServerManager {
 	}
 	
 	
-	public static void main(String[] args) {
-		start();
+	public static void main(String[] args) throws Throwable {
+		
+		startVmagentThread();
+		
+		System.in.read();
 	}
 
 }
