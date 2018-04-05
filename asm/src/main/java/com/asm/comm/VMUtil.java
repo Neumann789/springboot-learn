@@ -24,7 +24,7 @@ public class VMUtil {
 			
 		}*/
 		
-		injectAgent("20628", "E:\\tech\\jvm\\javaagent\\test\\vmagent.jar");
+		injectAgent("22472", "C:\\Users\\Administrator\\Desktop\\vmagent.jar");
 		
 		System.in.read();
 		
